@@ -1,10 +1,8 @@
-FROM sstrigler/squeeze
+FROM sstrigler/squeeze-llmp
 MAINTAINER Stefan Strigler <stefan@strigler.de>
 
 RUN apt-get update
-RUN apt-get install -y php5-cgi php5-mysql php5-gd php5-suhosin php5-xcache
-RUN apt-get install -y mysql-client
-RUN apt-get install -y lighttpd
+RUN apt-get install -y lighttpd-mod-magnet
 RUN rm -rf /var/lib/apt/lists/*
 
 COPY etc /etc
