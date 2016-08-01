@@ -11,12 +11,9 @@ COPY bsde /var/www
 RUN mkdir -p /home/blogsport/blogsport.de/htdocs
 RUN ln -s /var/www/wp-inst /home/blogsport/blogsport.de/htdocs/wp-inst
 
-RUN chown www-data /var/www/wp-inst/wp-content/cache
-RUN chown www-data /var/www/wp-inst/wp-content/smarty-cache
-RUN ln -s /data /var/www/wp-inst/wp-content/blogs
+RUN chown -R www-data /var/www/wp-inst/wp-content/cache
+RUN chown -R www-data /var/www/wp-inst/wp-content/smarty-cache
 
 EXPOSE 80
-
-VOLUME /data
 
 CMD ["lighttpd", "-D", "-f", "/etc/lighttpd/lighttpd.conf"]
