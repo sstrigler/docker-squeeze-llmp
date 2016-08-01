@@ -1,0 +1,3 @@
+[submodule "bsde"]
+	path = bsde
+	url = git@fiddl.strigler.de:~git/bsde.git
