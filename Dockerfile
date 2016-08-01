@@ -8,8 +8,7 @@ RUN apt-get install -y lighttpd
 RUN rm -rf /var/lib/apt/lists/*
 
 COPY etc /etc
-EXPOSE 80
 
-VOLUME /var/www
+EXPOSE 80
 
 CMD ["lighttpd", "-D", "-f", "/etc/lighttpd/lighttpd.conf"]
