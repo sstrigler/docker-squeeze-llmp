@@ -2,7 +2,7 @@ FROM sstrigler/squeeze-llmp
 MAINTAINER Stefan Strigler <stefan@strigler.de>
 
 RUN apt-get update
-RUN apt-get install -y ssmtp lighttpd-mod-magnet
+RUN apt-get install -y ssmtp lighttpd-mod-magnet curl php5-curl
 RUN rm -rf /var/lib/apt/lists/*
 
 COPY etc /etc
