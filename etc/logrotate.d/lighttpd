@@ -1,0 +1,13 @@
+/var/log/lighttpd/*.log {
+        daily
+        missingok
+	copytruncate
+        rotate 3
+        compress
+	delaycompress
+        notifempty
+        sharedscripts
+        postrotate
+             /etc/init.d/lighttpd reopen-logs > /dev/null 2>&1; \
+        endscript
+}

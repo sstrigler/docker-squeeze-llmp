@@ -1,15 +1,17 @@
 FROM sstrigler/squeeze
 MAINTAINER Stefan Strigler <stefan@strigler.de>
 
-RUN apt-get update
-RUN apt-get install -y php5-cgi php5-mysql php5-gd php5-suhosin php5-xcache
-RUN apt-get install -y mysql-client
-RUN apt-get install -y lighttpd
-RUN rm -rf /var/lib/apt/lists/*
+RUN apt-get update -q \
+    && DEBIAN_FRONTEND=noninteractive apt-get install -yq --no-install-recommends \
+    php5-cgi php5-mysql php5-gd php5-suhosin php5-xcache \
+    mysql-client \
+    lighttpd \
+    logrotate \
+    && rm -rf /var/lib/apt/lists/*
 
 COPY etc /etc
 
 EXPOSE 80
-VOLUME ["/var/www"]
+VOLUME ["/var/www", "/var/log/lighttpd" ]
 
-ENTRYPOINT ["/usr/sbin/lighttpd", "-D", "-f", "/etc/lighttpd/lighttpd.conf"]
+CMD ["/usr/sbin/lighttpd", "-D", "-f", "/etc/lighttpd/lighttpd.conf"]
